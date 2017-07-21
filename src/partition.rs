@@ -42,7 +42,7 @@ fn read4<R: Read>(r: &mut R) -> u32 {
 	(buf[3] as u32) << 24 | (buf[2] as u32) << 16 | (buf[1] as u32) << 8 | (buf[0] as u32)
 }
 
-pub fn read_partition(path: String, index: u8) -> Result<Partition, Error> {
+fn read_partition(path: String, index: u8) -> Result<Partition, Error> {
 	let mut f = File::open(&Path::new(&path))?;
 	assert!(index < 4);
 
@@ -67,7 +67,7 @@ pub fn read_partition(path: String, index: u8) -> Result<Partition, Error> {
 	return Ok(new_part);
 }
 
-pub fn parse(path: String) -> Result<Vec<Partition>, Error> {
+pub fn read_from_file(path: String) -> Result<Vec<Partition>, Error> {
 	let mut partitions: Vec<Partition> = Vec::new();
 
 	for i in [0,1,2,3].iter() {
