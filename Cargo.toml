@@ -2,5 +2,6 @@
 name = "mbr"
 version = "0.1.0"
 authors = ["Alexander von Gluck IV <kallisti5@unixzen.com>"]
+license = "MIT"
 
 [dependencies]
