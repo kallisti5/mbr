@@ -8,10 +8,12 @@
  */
 
 
+use std::fmt;
 use std::path::Path;
 use std::fs::File;
 use std::io::{Read,SeekFrom,Error};
 use std::io::prelude::*;
+use std::vec::Vec;
 
 // Start +446
 #[derive(Debug, Clone)]
@@ -67,6 +69,17 @@ fn read_partition(path: String, index: u8) -> Result<Partition, Error> {
 	return Ok(new_part);
 }
 
+impl fmt::Display for Partition {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		let mut part_size = self.p_size;
+		if self.p_size > 0 {
+			part_size -= 1;
+		}
+		let end = self.p_lba + part_size;
+		write!(f, "Partition. Type: 0x{:X}. Location: {}-{}.", self.p_type, self.p_lba, end)
+	}
+}
+
 pub fn read_from_file(path: String) -> Result<Vec<Partition>, Error> {
 	let mut partitions: Vec<Partition> = Vec::new();
 
@@ -79,6 +92,6 @@ pub fn read_from_file(path: String) -> Result<Vec<Partition>, Error> {
 
 pub fn table_dump(partitions: Vec<Partition>) {
 	for i in partitions.iter() {
-		print!("{:?}\n", i);
+		print!("{}\n", i);
 	}
 }
