@@ -9,7 +9,7 @@
 
 
 use std::fmt;
-use std::path::Path;
+use std::path::{Path,PathBuf};
 use std::fs::File;
 use std::io::{Read,SeekFrom,Error};
 use std::io::prelude::*;
@@ -44,8 +44,8 @@ fn read4<R: Read>(r: &mut R) -> u32 {
 	(buf[3] as u32) << 24 | (buf[2] as u32) << 16 | (buf[1] as u32) << 8 | (buf[0] as u32)
 }
 
-fn read_partition(path: String, index: u8) -> Result<Partition, Error> {
-	let mut f = File::open(&Path::new(&path))?;
+fn read_partition(path: PathBuf, index: u8) -> Result<Partition, Error> {
+	let mut f = File::open(&path.as_path())?;
 	assert!(index < 4);
 
 	let position: u64 = 446 + (16 * (index as u64));
@@ -80,7 +80,7 @@ impl fmt::Display for Partition {
 	}
 }
 
-pub fn read_from_file(path: String) -> Result<Vec<Partition>, Error> {
+pub fn read_from_file(path: PathBuf) -> Result<Vec<Partition>, Error> {
 	let mut partitions: Vec<Partition> = Vec::new();
 
 	for i in [0,1,2,3].iter() {
