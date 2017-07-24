@@ -9,7 +9,7 @@
 
 
 use std::fmt;
-use std::path::{Path,PathBuf};
+use std::path::PathBuf;
 use std::fs::File;
 use std::io::{Read,SeekFrom,Error};
 use std::io::prelude::*;
