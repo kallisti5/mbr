@@ -1,8 +1,11 @@
 [package]
 name = "mbr"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Alexander von Gluck IV <kallisti5@unixzen.com>"]
 license = "MIT"
-description = "A crate to parse MBR partiton tables"
+description = "Parse legacy mbr partition tables with ease"
+repository = "https://github.com/kallisti5/mbr"
+readme = "README.md"
+keywords = ["mbr", "bios", "partition", "legacy", "table"]
 
 [dependencies]
