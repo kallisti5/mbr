@@ -1,6 +1,6 @@
 [package]
 name = "mbr"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["Alexander von Gluck IV <kallisti5@unixzen.com>"]
 license = "MIT"
 description = "Parse legacy mbr partition tables with ease"

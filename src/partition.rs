@@ -18,15 +18,25 @@ use std::vec::Vec;
 // Start +446
 #[derive(Debug, Clone)]
 pub struct Partition {
+	/// Partition Status
 	pub p_status: u8,
+	/// Start cylinder (Legacy CHS)
 	pub p_cyl_begin: u8,
+	/// Start head (Legacy CHS)
 	pub p_head_begin: u8,
+	/// Start sector (Legacy CHS)
 	pub p_sect_begin: u8,
+	/// Partition Type (DOS, Windows, BeOS, etc)
 	pub p_type: u8,
+	/// End cylinder (Legacy CHS)
 	pub p_cyl_end: u8,
+	/// End head (Legacy CHS)
 	pub p_head_end: u8,
+	/// End sector
 	pub p_sect_end: u8,
+	/// Logical block address to start of partition
 	pub p_lba: u32,
+	/// Number of sectors in partition
 	pub p_size: u32,
 }
 
@@ -80,7 +90,11 @@ impl fmt::Display for Partition {
 	}
 }
 
-pub fn read_from_file(path: PathBuf) -> Result<Vec<Partition>, Error> {
+/// Read an mbr partition table from a block device for file.
+///
+/// let partitions: Result<Vec<Partition>, Error> = read_partitions("/dev/sda");
+///
+pub fn read_partitions(path: PathBuf) -> Result<Vec<Partition>, Error> {
 	let mut partitions: Vec<Partition> = Vec::new();
 
 	for i in [0,1,2,3].iter() {
@@ -90,6 +104,10 @@ pub fn read_from_file(path: PathBuf) -> Result<Vec<Partition>, Error> {
 	return Ok(partitions);
 }
 
+/// Dump a partition table to stdout (for debugging)
+///
+/// table_dump(Vec<Partition>);
+///
 pub fn table_dump(partitions: Vec<Partition>) {
 	for i in partitions.iter() {
 		print!("{}\n", i);
