@@ -5,6 +5,11 @@ A rust crate to read legacy MBR disk partitions
 > Warning: This crate is early in development and may encounter API changes as it grows.
 > When the version hits 1.x.x the API will be stable
 
+## Example Usage
+
+  extern crate mbr;
+  let partitions = mbr::partition::read_partitions("/dev/sda");
+
 ## What about GPT partition tables?
 
 There is a [great GPT parsing library](https://crates.io/crates/gpt) created by another author.
