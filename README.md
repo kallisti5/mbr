@@ -7,8 +7,8 @@ A rust crate to read legacy MBR disk partitions
 
 ## Example Usage
 
-  extern crate mbr;
-  let partitions = mbr::partition::read_partitions("/dev/sda");
+   extern crate mbr;
+   let partitions = mbr::partition::read_partitions("/dev/sda");
 
 ## What about GPT partition tables?
 
