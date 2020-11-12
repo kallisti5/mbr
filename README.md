@@ -2,8 +2,9 @@
 
 A rust crate to read legacy MBR disk partitions
 
-> Warning: This crate is early in development and may encounter API changes as it grows.
-> When the version hits 1.x.x the API will be stable
+> Warning: This crate moves slowly since the MBR specification is pretty simple! Don't take
+> lack of updates as abandonment of this project!  It currently handles most basic usage
+> cases, and bugs/pr's are addressed via the issue tracker :-)
 
 ## Example Usage
 
@@ -19,6 +20,6 @@ I'm tracking their API somewhat to ensure applications parsing MBR and GPT table
 
 ## License
 
-Copyright, 2017 Alexander von Gluck IV
+Copyright, 2017-2021 Alexander von Gluck IV
 Released under the terms of the MIT license.
 
