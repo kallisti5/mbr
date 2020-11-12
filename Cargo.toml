@@ -9,3 +9,6 @@ readme = "README.md"
 keywords = ["mbr", "bios", "partition", "legacy", "table"]
 
 [dependencies]
+
+[dev-dependencies]
+fatfs = "0.2.0"
