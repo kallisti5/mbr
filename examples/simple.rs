@@ -48,7 +48,7 @@ pub fn locate_boot_partition(disk: PathBuf) -> Result<partition::Partition,Box<d
 fn main() {
 	let disk = PathBuf::from("/dev/sda");
 	match locate_boot_partition(disk) {
-		Ok(x) => println!("Located HAIKU partition!"),
+		Ok(_x) => println!("Located HAIKU partition!"),
 		Err(e) => println!("Unable to locate HAIKU partition: {}", e),
 	}
 }
