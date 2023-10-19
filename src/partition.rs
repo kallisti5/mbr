@@ -113,3 +113,49 @@ pub fn table_dump(partitions: Vec<Partition>) {
 		print!("{}\n", i);
 	}
 }
+
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn test_load() {
+		let disk = PathBuf::from("samples/test3.img");
+		let result = read_partitions(disk.clone());
+		// Validate we could read
+		assert!(result.is_ok());
+		// Validate that there's always 4. (we just list unused primary entries as 0 type, etc)
+		assert!(result.expect("successful read").len() == 4);
+	}
+
+	#[test]
+	fn test_counts() {
+		let disk = PathBuf::from("samples/test3.img");
+		let partitions = read_partitions(disk.clone()).expect("valid load");
+
+		// test3 contains 3 partitions
+		let used_partitions: Vec<Partition> = partitions
+			.clone()
+			.into_iter()
+			.filter(|p| p.p_type != 0)
+			.collect();
+		assert!(used_partitions.len() == 3);
+
+		// test3 contains 1 BeOS partition
+		let beos_partitions: Vec<Partition> = partitions
+			.clone()
+			.into_iter()
+			.filter(|p| p.p_type == 0xeb)
+			.collect();
+		assert!(beos_partitions.len() == 1);
+
+		// test3 contains 1 Linux partition
+		let linux_partitions: Vec<Partition> = partitions
+			.clone()
+			.into_iter()
+			.filter(|p| p.p_type == 0x83)
+			.collect();
+		assert!(linux_partitions.len() == 1);
+	}
+}
