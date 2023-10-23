@@ -1,6 +1,6 @@
 # mbr
 
-If you use or enjoy this, [![buy me a coffee at ko-fi](https://storage.ko-fi.com/cdn/kofi4.png?v=3)](https://ko-fi.com/Q5Q2QF1PE)!
+If you use or enjoy this, [buy me a coffee at ko-fi](https://ko-fi.com/Q5Q2QF1PE).
 
 A rust crate to read legacy MBR disk partitions
 
